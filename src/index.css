@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 30 20% 95%;
+    --foreground: 20 15% 20%;
+
+    --card: 30 30% 97%;
+    --card-foreground: 20 15% 20%;
+
+    --popover: 30 30% 97%;
+    --popover-foreground: 20 15% 20%;
+
+    --primary: 350 55% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 30 25% 88%;
+    --secondary-foreground: 20 15% 20%;
+
+    --muted: 25 15% 90%;
+    --muted-foreground: 20 10% 45%;
+
+    --accent: 350 45% 60%;
+    --accent-foreground: 0 0% 100%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 25 20% 82%;
+    --input: 25 20% 82%;
+    --ring: 350 55% 50%;
+
+    --radius: 0.75rem;
+
+    --love-pink: 350 55% 50%;
+    --love-rose: 350 60% 65%;
+    --love-blush: 30 30% 90%;
+    --love-cream: 30 25% 93%;
+    --love-warm: 20 50% 55%;
+    --love-deep: 350 40% 35%;
+
+    --font-body: 'Quicksand', sans-serif;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: var(--font-body);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-15px) rotate(5deg); }
+}
+
+@keyframes heartfall {
+  0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(100vh) rotate(720deg); opacity: 0.3; }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { filter: drop-shadow(0 0 8px hsl(350 55% 50% / 0.4)); }
+  50% { filter: drop-shadow(0 0 20px hsl(350 55% 50% / 0.7)); }
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+.animate-heartfall {
+  animation: heartfall linear infinite;
+}
+
+.animate-pulse-glow {
+  animation: pulse-glow 2s ease-in-out infinite;
+}
