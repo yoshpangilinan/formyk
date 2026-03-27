@@ -6,7 +6,7 @@ import FallingCharacters from "./FallingCharacters";
 const MESSAGE = "you finally scratched it off! good girl for being so patient while i was acting like a nerd. i know you were wondering what i was doing, and honestly, this is just a random thing i put together to top that birthday cake drawing. consider it just the beginning, because i'm going to spend the rest of our time making things for you.";
 // ✏️ And the text shown after scratching
 const AFTER_SCRATCH_TITLE = "i love you so much, my wife.";
-const AFTER_SCRATCH_SUB = "— rawr!";
+const AFTER_SCRATCH_SUB = "— do you think you'd ever be open to us being more than just what we are? hypothetically, if i were to ask you out for real, do you think you'd actually say yes?";
 const ScratchCard = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const cardRef = useRef<HTMLDivElement>(null);
