@@ -9,12 +9,16 @@ import flip5 from "@/assets/fliprinini-5.png";
 import flip6 from "@/assets/fliprinini-6.jpg";
 import flip7 from "@/assets/fliprinini-7.jpg";
 import flip8 from "@/assets/fliprinini-8.jpg";
+import flip9 from "@/assets/fliprinini-9.png";
+import flip10 from "@/assets/fliprinini-10.png";
+import flip11 from "@/assets/fliprinini-11.png";
+import flip12 from "@/assets/fliprinini-12.png";
 
 interface Props {
   onNext: () => void;
 }
 
-const IMAGES = [flip1, flip2, flip3, flip4, flip5, flip6, flip7, flip8];
+const IMAGES = [flip1, flip2, flip3, flip4, flip5, flip6, flip7, flip8, flip9, flip10, flip11, flip12];
 
 const generateCards = () => {
   const pairs = [...IMAGES, ...IMAGES];
@@ -88,13 +92,13 @@ const MemoryGame = ({ onNext }: Props) => {
   }, [selected, cards]);
 
   useEffect(() => {
-    if (matchedCount === 8) {
+    if (matchedCount === 12) {
       setTimeout(onNext, 1000);
     }
   }, [matchedCount, onNext]);
 
   return (
-    <div className="min-h-screen flex flex-col items-center justify-center bg-background px-4 py-8 relative">
+    <div className="min-h-screen flex flex-col items-center justify-start bg-background px-4 py-8 relative overflow-y-auto">
       <FallingCharacters variant="rinini" />
 
       <div className="z-10 flex flex-col items-center">
@@ -111,7 +115,7 @@ const MemoryGame = ({ onNext }: Props) => {
         ) : (
           <>
             <p className="text-muted-foreground mb-6">
-              {matchedCount}/8 matched
+              {matchedCount}/12 matched
             </p>
             <div className="grid grid-cols-4 gap-3 max-w-sm w-full">
               {cards.map((card) => (

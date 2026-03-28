@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import LandingPage from "@/components/LandingPage";
+import CafePOS from "@/components/CafePOS";
 import MemoryGame from "@/components/MemoryGame";
 import TrickQuestion from "@/components/TrickQuestion";
 import CatchHearts from "@/components/CatchHearts";
@@ -10,6 +11,7 @@ import ScratchCard from "@/components/ScratchCard";
 
 const PAGES = [
   "landing",
+  "cafe",    // ← new page: rinini's café POS
   "memory",
   "trick",
   "catch",
@@ -34,12 +36,13 @@ const Index = () => {
         exit={{ opacity: 0 }}
         transition={{ duration: 0.5 }}
       >
-        {page === "landing" && <LandingPage onNext={() => goTo("memory")} />}
-        {page === "memory" && <MemoryGame onNext={() => goTo("trick")} />}
-        {page === "trick" && <TrickQuestion onNext={() => goTo("catch")} />}
-        {page === "catch" && <CatchHearts onNext={() => goTo("sweet")} />}
-        {page === "sweet" && <SweetMessage onNext={() => goTo("jar")} />}
-        {page === "jar" && <JarOfHearts onNext={() => goTo("scratch")} />}
+        {page === "landing" && <LandingPage   onNext={() => goTo("cafe")}    />}
+        {page === "cafe"    && <CafePOS        onNext={() => goTo("memory")}  />}
+        {page === "memory"  && <MemoryGame     onNext={() => goTo("trick")}   />}
+        {page === "trick"   && <TrickQuestion  onNext={() => goTo("catch")}   />}
+        {page === "catch"   && <CatchHearts    onNext={() => goTo("sweet")}   />}
+        {page === "sweet"   && <SweetMessage   onNext={() => goTo("jar")}     />}
+        {page === "jar"     && <JarOfHearts    onNext={() => goTo("scratch")} />}
         {page === "scratch" && <ScratchCard />}
       </motion.div>
     </AnimatePresence>
