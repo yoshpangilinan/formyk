@@ -1,19 +1,14 @@
 import { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import LandingPage    from "@/components/LandingPage";
-import CafePOS        from "@/components/CafePOS";
-import MemoryGame     from "@/components/MemoryGame";
-import TrickQuestion  from "@/components/TrickQuestion";
-import CatchHearts    from "@/components/CatchHearts";
-import SweetMessage   from "@/components/SweetMessage";
-import JarOfHearts    from "@/components/JarOfHearts";
-import WordScramble   from "@/components/WordScramble";
-import TapCharacter   from "@/components/TapCharacter";
-import LoveCalculator from "@/components/LoveCalculator";
-import SealedLetters  from "@/components/SealedLetters";
-import Jigsaw         from "@/components/Jigsaw";
-import ScratchCard    from "@/components/ScratchCard";
-import Gallery        from "@/components/Gallery";
+import LandingPage   from "@/components/LandingPage";
+import CafePOS       from "@/components/CafePOS";
+import MemoryGame    from "@/components/MemoryGame";
+import TrickQuestion from "@/components/TrickQuestion";
+import CatchHearts   from "@/components/CatchHearts";
+import SweetMessage  from "@/components/SweetMessage";
+import JarOfHearts   from "@/components/JarOfHearts";
+import ScratchCard   from "@/components/ScratchCard";
+import Gallery       from "@/components/Gallery";
 
 const PAGES = [
   "landing",
@@ -24,49 +19,33 @@ const PAGES = [
   "catch",
   "sweet",
   "jar",
-  "wordscramble",
-  "tapcharacter",
-  "lovecalculator",
-  "sealedletters",
-  "jigsaw",
   "scratch",
 ] as const;
 
 type Page = (typeof PAGES)[number];
 
 const PAGE_LABELS: Record<Page, string> = {
-  landing:       "🏠 Landing",
-  gallery:       "📸 Memories Gallery",
-  cafe:          "🧋 Café POS",
-  memory:        "🃏 Memory Game",
-  trick:         "😏 Trick Question",
-  catch:         "💝 Catch Hearts",
-  sweet:         "💬 Sweet Message",
-  jar:           "🫙 Jar of Hearts",
-  wordscramble:  "🔤 Word Scramble",
-  tapcharacter:  "👆 Tap the Character",
-  lovecalculator:"💯 Love Calculator",
-  sealedletters: "💌 Sealed Letters",
-  jigsaw:        "🧩 Jigsaw",
-  scratch:       "🪙 Scratch Card",
+  landing: "🏠 Landing",
+  gallery: "📸 Memories Gallery",
+  cafe:    "🧋 Café POS",
+  memory:  "🃏 Memory Game",
+  trick:   "😏 Trick Question",
+  catch:   "💝 Catch Hearts",
+  sweet:   "💬 Sweet Message",
+  jar:     "🫙 Jar of Hearts",
+  scratch: "🪙 Scratch Card",
 };
 
 // Dev nav is only visible during local development (npm run dev)
 const IS_DEV = import.meta.env.DEV;
 
 const Index = () => {
-  const [page, setPage]         = useState<Page>("landing");
-  const [devOpen, setDevOpen]   = useState(false);
+  const [page, setPage]       = useState<Page>("landing");
+  const [devOpen, setDevOpen] = useState(false);
 
   const goTo = (p: Page) => {
     setPage(p);
     setDevOpen(false);
-  };
-
-  const currentIdx = PAGES.indexOf(page);
-  const goNext = () => {
-    const next = PAGES[currentIdx + 1];
-    if (next) goTo(next);
   };
 
   return (
@@ -79,20 +58,15 @@ const Index = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {page === "landing"        && <LandingPage    onNext={() => goTo("cafe")} onArchive={() => goTo("gallery")} />}
-          {page === "gallery"         && <Gallery         onBack={() => goTo("landing")} />}
-          {page === "cafe"           && <CafePOS         onNext={() => goTo("memory")}         />}
-          {page === "memory"         && <MemoryGame      onNext={() => goTo("trick")}          />}
-          {page === "trick"          && <TrickQuestion   onNext={() => goTo("catch")}          />}
-          {page === "catch"          && <CatchHearts     onNext={() => goTo("sweet")}          />}
-          {page === "sweet"          && <SweetMessage    onNext={() => goTo("jar")}            />}
-          {page === "jar"            && <JarOfHearts     onNext={() => goTo("wordscramble")}   />}
-          {page === "wordscramble"   && <WordScramble    onNext={() => goTo("tapcharacter")}   />}
-          {page === "tapcharacter"   && <TapCharacter    onNext={() => goTo("lovecalculator")} />}
-          {page === "lovecalculator" && <LoveCalculator  onNext={() => goTo("sealedletters")}  />}
-          {page === "sealedletters"  && <SealedLetters   onNext={() => goTo("jigsaw")}         />}
-          {page === "jigsaw"         && <Jigsaw          onNext={() => goTo("scratch")}        />}
-          {page === "scratch"        && <ScratchCard />}
+          {page === "landing" && <LandingPage   onNext={() => goTo("cafe")}    onArchive={() => goTo("gallery")} />}
+          {page === "gallery" && <Gallery        onBack={() => goTo("landing")} />}
+          {page === "cafe"    && <CafePOS        onNext={() => goTo("memory")} />}
+          {page === "memory"  && <MemoryGame     onNext={() => goTo("trick")}  />}
+          {page === "trick"   && <TrickQuestion  onNext={() => goTo("catch")}  />}
+          {page === "catch"   && <CatchHearts    onNext={() => goTo("sweet")}  />}
+          {page === "sweet"   && <SweetMessage   onNext={() => goTo("jar")}    />}
+          {page === "jar"     && <JarOfHearts    onNext={() => goTo("scratch")}/>}
+          {page === "scratch" && <ScratchCard />}
         </motion.div>
       </AnimatePresence>
 
