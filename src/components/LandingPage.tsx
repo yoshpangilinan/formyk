@@ -5,7 +5,8 @@ import bouquetCover from "@/assets/bouquet-cover.png";
 import flowerImg from "@/assets/flower-for-the-bouquet.png";
 
 interface Props {
-  onNext: () => void;
+  onNext:    () => void;
+  onArchive: () => void;
 }
 
 interface FlowerItem {
@@ -19,7 +20,8 @@ interface FlowerItem {
 
 const TOTAL_FLOWERS = 10;
 
-const LandingPage = ({ onNext }: Props) => {
+const LandingPage = ({ onNext, onArchive }: Props) => {
+  const [phase, setPhase] = useState<"choice" | "bouquet">("choice");
   const [flowers, setFlowers] = useState<FlowerItem[]>(() =>
     Array.from({ length: TOTAL_FLOWERS }, (_, i) => ({
       id: i,
@@ -67,7 +69,71 @@ const LandingPage = ({ onNext }: Props) => {
     <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-background">
       <FallingCharacters variant="rinini" />
 
-      <div className="relative z-10 flex flex-col items-center gap-4 px-4 text-center w-full max-w-md">
+      {/* ── Choice screen ── */}
+      <AnimatePresence mode="wait">
+        {phase === "choice" && (
+          <motion.div
+            key="choice"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10 flex flex-col items-center gap-8 px-4 text-center"
+          >
+            <motion.h1
+              initial={{ opacity: 0, y: -30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1 }}
+              className="text-5xl md:text-7xl font-bold text-love-deep tracking-tight"
+            >
+              to my pretty wife, kristína
+            </motion.h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.6 }}
+              className="text-lg text-muted-foreground max-w-sm"
+            >
+              our little archive :)
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1 }}
+              className="flex flex-col sm:flex-row gap-4 items-center"
+            >
+              <motion.button
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setPhase("bouquet")}
+                className="bg-primary text-primary-foreground px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow text-lg min-w-[200px]"
+              >
+                for my wife
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={onArchive}
+                className="bg-card text-love-deep border border-border px-8 py-4 rounded-full font-semibold shadow hover:shadow-md transition-shadow text-lg min-w-[200px]"
+              >
+                📸 memories
+              </motion.button>
+            </motion.div>
+          </motion.div>
+        )}
+
+        {/* ── Bouquet game ── */}
+        {phase === "bouquet" && (
+          <motion.div
+            key="bouquet"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="relative z-10 flex flex-col items-center gap-4 px-4 text-center w-full max-w-md"
+          >
         <motion.h1
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -209,12 +275,14 @@ const LandingPage = ({ onNext }: Props) => {
                 onClick={onNext}
                 className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transition-shadow text-lg"
               >
-                okay, let's go!
+                okay, let's go! 💕
               </motion.button>
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };
