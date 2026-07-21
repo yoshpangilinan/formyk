@@ -14,6 +14,7 @@ import LoveCalculator from "@/components/LoveCalculator";
 import SealedLetters  from "@/components/SealedLetters";
 import TapCharacter   from "@/components/TapCharacter";
 import WordScramble   from "@/components/WordScramble";
+import DecisionWheel  from "@/components/DecisionWheel";
 
 const PAGES = [
   "landing",
@@ -30,6 +31,7 @@ const PAGES = [
   "sealed",
   "tap",
   "scramble",
+  "wheel",
 ] as const;
 
 type Page = (typeof PAGES)[number];
@@ -49,6 +51,7 @@ const PAGE_LABELS: Record<Page, string> = {
   sealed:   "✉️ Sealed Letters",
   tap:      "👆 Tap Character",
   scramble: "🔤 Word Scramble",
+  wheel:    "🎡 Decision Wheel",
 };
 
 // Dev nav is only visible during local development (npm run dev)
@@ -73,7 +76,7 @@ const Index = () => {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
         >
-          {page === "landing"  && <LandingPage    onNext={() => goTo("cafe")}    onArchive={() => goTo("gallery")} />}
+          {page === "landing"  && <LandingPage    onNext={() => goTo("cafe")}    onArchive={() => goTo("gallery")} onWheel={() => goTo("wheel")} />}
           {page === "gallery"  && <Gallery         onBack={() => goTo("landing")} />}
           {page === "cafe"     && <CafePOS         onNext={() => goTo("memory")} />}
           {page === "memory"   && <MemoryGame      onNext={() => goTo("trick")}  />}
@@ -87,6 +90,7 @@ const Index = () => {
           {page === "sealed"   && <SealedLetters   onNext={() => goTo("landing")} />}
           {page === "tap"      && <TapCharacter    onNext={() => goTo("landing")} />}
           {page === "scramble" && <WordScramble    onNext={() => goTo("landing")} />}
+          {page === "wheel"    && <DecisionWheel   onBack={() => goTo("landing")} />}
         </motion.div>
       </AnimatePresence>
 

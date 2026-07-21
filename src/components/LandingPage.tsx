@@ -7,6 +7,7 @@ import flowerImg from "@/assets/flower-for-the-bouquet.png";
 interface Props {
   onNext:    () => void;
   onArchive: () => void;
+  onWheel:   () => void;
 }
 
 interface FlowerItem {
@@ -20,7 +21,7 @@ interface FlowerItem {
 
 const TOTAL_FLOWERS = 10;
 
-const LandingPage = ({ onNext, onArchive }: Props) => {
+const LandingPage = ({ onNext, onArchive, onWheel }: Props) => {
   const [phase, setPhase] = useState<"choice" | "bouquet">("choice");
   const [flowers, setFlowers] = useState<FlowerItem[]>(() =>
     Array.from({ length: TOTAL_FLOWERS }, (_, i) => ({
@@ -86,7 +87,7 @@ const LandingPage = ({ onNext, onArchive }: Props) => {
               transition={{ duration: 1 }}
               className="text-5xl md:text-7xl font-bold text-love-deep tracking-tight"
             >
-              to my babygirl princess, kristína
+              to my pretty wife, kristína
             </motion.h1>
 
             <motion.p
@@ -120,6 +121,14 @@ const LandingPage = ({ onNext, onArchive }: Props) => {
               >
                 📸 memories
               </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={onWheel}
+                className="bg-card text-love-deep border border-border px-8 py-4 rounded-full font-semibold shadow hover:shadow-md transition-shadow text-lg min-w-[200px]"
+              >
+                whenever we can't decide
+              </motion.button>
             </motion.div>
           </motion.div>
         )}
@@ -140,7 +149,7 @@ const LandingPage = ({ onNext, onArchive }: Props) => {
           transition={{ duration: 1 }}
           className="text-5xl md:text-7xl font-bold text-love-deep tracking-tight"
         >
-          to my babygirl princess, kristína
+          to my pretty wife, kristína
         </motion.h1>
 
         <motion.p
