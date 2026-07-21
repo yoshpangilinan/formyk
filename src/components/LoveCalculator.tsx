@@ -6,14 +6,16 @@ interface Props {
   onNext: () => void;
 }
 
-// ✏️ TODO: customise these reasons — they show one at random after calculating
+// ✏️ TODO: customise these — one shows at random after calculating.
+// Use {name1} and {name2} anywhere — they get swapped in for whatever names were typed,
+// so this reads the same whichever of you runs the calculator.
 const REASONS = [
-  "because she laughs at everything even when it's not funny 💀",
-  "because she sends voice messages that are somehow 3 minutes long",
-  "because she's the prettiest girl in the whole country 🇸🇰",
-  "because gyunini approves and gyunini is never wrong 🐮",
-  "because she makes everything better just by existing",
-  "because she's my rinini 🌸",
+  "{name1} and {name2} — the kind of pull that doesn't need an explanation. some connections just build their own world quietly, over calls that run too long and messages sent at odd hours. this is one of them.",
+  "there's a version of this story where two people almost don't find each other. {name1} and {name2} aren't in that version. whatever brought you here worked exactly the way it was supposed to.",
+  "not every closeness needs to be loud to be real. {name1} and {name2} have the kind of steady, unshowy devotion that just keeps choosing itself, one ordinary day at a time.",
+  "distance tests most things. it seems to have only made {name1} and {name2} more certain — proof that some bonds get stronger exactly where they're supposed to break.",
+  "{name1} and {name2}: the kind of match where nothing needs to be said to be understood. the good days have been genuinely good, and the ordinary ones counted for just as much.",
+  "little kris and little yoshi already approve, and they're never wrong.",
   // ✏️ add more here
 ];
 
@@ -25,12 +27,12 @@ const LoveCalculator = ({ onNext }: Props) => {
   const [step, setStep]     = useState(0);
 
   const LOADING_STEPS = [
-    "analysing compatibility... 🔬",
-    "checking heart rates... 💓",
-    "consulting gyunini... 🐮",
-    "running calculations... 🧮",
-    "final check... ✨",
-    "result ready! 💕",
+    "analysing compatibility...",
+    "checking heart rates...",
+    "consulting little kris...",
+    "consulting little yoshi...",
+    "running calculations...",
+    "result ready!",
   ];
 
   const calculate = () => {
@@ -45,7 +47,10 @@ const LoveCalculator = ({ onNext }: Props) => {
       if (i < LOADING_STEPS.length - 1) {
         setTimeout(tick, 500 + Math.random() * 300);
       } else {
-        const r = REASONS[Math.floor(Math.random() * REASONS.length)];
+        const template = REASONS[Math.floor(Math.random() * REASONS.length)];
+        const r = template
+          .replaceAll("{name1}", name1.trim())
+          .replaceAll("{name2}", name2.trim());
         setReason(r);
         setTimeout(() => setPhase("result"), 600);
       }
@@ -109,7 +114,7 @@ const LoveCalculator = ({ onNext }: Props) => {
               disabled={!name1.trim() || !name2.trim()}
               className="bg-primary text-primary-foreground px-8 py-3 rounded-full font-semibold shadow-lg text-base w-full disabled:opacity-40"
             >
-              calculate 💕
+              calculate
             </motion.button>
           </motion.div>
         )}
@@ -152,7 +157,7 @@ const LoveCalculator = ({ onNext }: Props) => {
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ type: "spring", stiffness: 200, damping: 15 }}
-            className="z-10 bg-card rounded-3xl p-10 shadow-2xl border border-border flex flex-col items-center gap-5 w-full max-w-sm text-center"
+            className="z-10 bg-card rounded-3xl p-10 shadow-2xl border border-border flex flex-col items-center gap-5 w-full max-w-md text-center"
           >
             <div className="text-5xl">💯</div>
             <h3 className="text-lg text-muted-foreground font-medium">
