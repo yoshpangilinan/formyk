@@ -87,7 +87,7 @@ const LandingPage = ({ onNext, onArchive, onWheel }: Props) => {
               transition={{ duration: 1 }}
               className="text-5xl md:text-7xl font-bold text-love-deep tracking-tight"
             >
-              to my pretty wife, kristína
+              to my babygirl princess, kristína
             </motion.h1>
 
             <motion.p
@@ -149,7 +149,7 @@ const LandingPage = ({ onNext, onArchive, onWheel }: Props) => {
           transition={{ duration: 1 }}
           className="text-5xl md:text-7xl font-bold text-love-deep tracking-tight"
         >
-          to my pretty wife, kristína
+          to my babygirl princess
         </motion.h1>
 
         <motion.p
